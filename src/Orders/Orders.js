@@ -6,12 +6,14 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  Dimensions,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import database from '@react-native-firebase/database';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import {DataTable} from 'react-native-paper';
 
-function HomeScreen({navigation}) {
+function Orders({navigation}) {
   const [list, setList] = useState([]);
 
   const showScheduleNotification = () => {
@@ -40,6 +42,9 @@ function HomeScreen({navigation}) {
             OrderTime: child.val().OrderTime,
             Order: child.val().Order,
             type: child.val().type,
+            userName: child.val().userName,
+            userMail: child.val().userMail,
+            userContact: child.val().userContact,
           });
 
           // if (child.val().key !== null) {
@@ -48,37 +53,68 @@ function HomeScreen({navigation}) {
           //   console.log('no notification');
           // }
         });
-        showScheduleNotification();
+        // showScheduleNotification();
         setList(li);
       });
   }, []);
 
-  const renderOrders = ({item}) => {
+  const renderHeader = ({item}) => {
+    return (
+      <View style={{}}>
+        <Text
+          style={{
+            color: '#2459a9',
+            marginLeft: '7%',
+            fontWeight: '600',
+            fontSize: 20,
+            marginTop: '4%',
+          }}>
+          All Orders
+        </Text>
+        <View
+          style={{
+            marginTop: '6%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            alignSelf: 'center',
+            padding: '2%',
+            width: '100%',
+          }}>
+          <Text style={styles.txtHead}>No</Text>
+          <Text style={styles.txtHead}>Order Date</Text>
+          <Text style={styles.txtHead}>Items(s)</Text>
+        </View>
+      </View>
+    );
+  };
+
+  const renderOrders = ({item, index}) => {
     return (
       <View>
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => {
-            navigation.navigate('Orders', {
+            navigation.navigate('OrderDetail', {
               Items: item,
               orders: item.Order,
             });
           }}
           style={{
-            marginTop: '3%',
-            alignSelf: 'center',
+            marginTop: '4%',
+            flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-evenly',
-            height: 100,
+            alignSelf: 'center',
+            padding: '2%',
             width: '90%',
-            backgroundColor: 'gold',
+            height: 60,
+            backgroundColor: '#f5f7fe',
           }}>
-          <Text style={{color: 'black'}}>{item.reservation}</Text>
-          <Text style={{color: 'black'}}>{item.OrderTime}</Text>
-          <Text style={{color: 'black'}}>
-            Total Orderd Items:{item.Order.length}
-          </Text>
-          <TouchableOpacity
+          <Text style={styles.txtItems}>{index}</Text>
+          <Text style={styles.txtItems}>{item.OrderTime}</Text>
+          <Text style={styles.txtItems}>{item.Order.length}</Text>
+          {/* <TouchableOpacity
             activeOpacity={0.8}
             style={{
               backgroundColor: 'pink',
@@ -91,7 +127,7 @@ function HomeScreen({navigation}) {
               deleteUser(item);
             }}>
             <Text style={{color: 'black'}}>Delete</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </TouchableOpacity>
       </View>
     );
@@ -111,22 +147,37 @@ function HomeScreen({navigation}) {
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <Text
         style={{
-          fontSize: 30,
-          fontWeight: '500',
-          alignSelf: 'center',
+          marginLeft: '4%',
+          fontWeight: '600',
+          fontSize: 32,
+          marginTop: '3%',
         }}>
-        Orders
+        Orders 😍
       </Text>
 
       <FlatList
         data={list}
         renderItem={renderOrders}
+        ListHeaderComponent={renderHeader}
         keyExtractor={item => item.key}
       />
     </SafeAreaView>
   );
 }
-export default HomeScreen;
+export default Orders;
 const styles = StyleSheet.create({
+  tableCont: {
+    paddingTop: 10,
+  },
   img: {borderRadius: 10, width: 100, height: 100},
+  txtHead: {
+    color: 'black',
+    fontWeight: '500',
+    fontSize: 20,
+  },
+  txtItems: {
+    color: 'black',
+    fontSize: 15,
+    fontWeight: '500',
+  },
 });

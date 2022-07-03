@@ -4,53 +4,61 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Orders from './src/Orders';
-import HomeScreen from './src/HomeScreen';
-import Upload from './src/Upload';
-
+import Home from './src/Home/Home';
+import Orders from './src/Orders/Orders';
+import OrderDetail from './src/Orders/OrderDetail';
+import UploadHomeService from './src/UploadHomeService/UploadHomeService';
+import UpdateHomeServices from './src/UpdateHomeServices/UpdateHomeServices';
+import UpdatePersonal from './src/UpdatePersonal/UpdatePersonal';
+import UploadPersonalService from './src/UploadPersonalService/UploadPersonalService';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 // const Tab = createMaterialTopTabNavigator();
 
-function StackScreens() {
-  return (
-    <Stack.Navigator
-      initialRouteName="StackScreens"
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen
-        options={{header: () => null}}
-        name="HomeScreen"
-        component={HomeScreen}
-      />
-      <Stack.Screen
-        options={{header: () => null}}
-        name="Orders"
-        component={Orders}
-      />
-    </Stack.Navigator>
-  );
-}
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="StackScreens"
+      <Stack.Navigator
+        initialRouteName="Home"
         screenOptions={{
           headerShown: false,
         }}>
-        <Tab.Screen
+        <Stack.Screen
           options={{header: () => null}}
           name="Home"
-          component={StackScreens}
+          component={Home}
         />
-        <Tab.Screen
+        <Stack.Screen
           options={{header: () => null}}
-          name="Upload"
-          component={Upload}
+          name="Orders"
+          component={Orders}
         />
-      </Tab.Navigator>
+        <Stack.Screen
+          options={{header: () => null}}
+          name="OrderDetail"
+          component={OrderDetail}
+        />
+        <Stack.Screen
+          options={{header: () => null}}
+          name="UploadHomeService"
+          component={UploadHomeService}
+        />
+        <Stack.Screen
+          options={{header: () => null}}
+          name="UpdateHomeServices"
+          component={UpdateHomeServices}
+        />
+        <Stack.Screen
+          options={{header: () => null}}
+          name="UpdatePersonal"
+          component={UpdatePersonal}
+        />
+        <Stack.Screen
+          options={{header: () => null}}
+          name="UploadPersonalService"
+          component={UploadPersonalService}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
