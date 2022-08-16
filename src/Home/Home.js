@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import style from './style';
 import database from '@react-native-firebase/database';
@@ -45,9 +44,9 @@ const Home = ({navigation}) => {
           fontSize: 40,
           color: 'black',
         }}>
-        Mr.Fix
+        Admin
       </Text>
-      <ScrollView contentContainerStyle={{flex: 1}}>
+      <ScrollView contentContainerStyle={{paddingBottom: 10}}>
         <View style={style.mainSubViewContainer}>
           <View
             style={[
@@ -133,24 +132,30 @@ const Home = ({navigation}) => {
               <Text style={style.txt}>Upload</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => {
-              navigation.navigate('Orders');
-            }}
-            style={[
-              style.subViews,
-              {
-                borderRadius: 0,
-                width: '82%',
-                height: '15%',
-                marginTop: '2%',
-                backgroundColor: 'red',
-              },
-            ]}>
-            <Ionicons name="md-newspaper" size={30} color="#fff" />
-            <Text style={[style.txt, {}]}> Orders</Text>
-          </TouchableOpacity>
+          <View style={[style.subViewContainer, {}]}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => {
+                navigation.navigate('Orders');
+              }}
+              style={[style.subViews, {}]}>
+              <Ionicons name="md-newspaper" size={30} color="#fff" />
+              <Text style={[style.txt, {}]}> Orders</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => {
+                navigation.navigate('ApproveScreen');
+              }}
+              style={[style.subViews, {backgroundColor: 'grey'}]}>
+              <MaterialCommunityIcons
+                name="home-floor-a"
+                size={38}
+                color="#fff"
+              />
+              <Text style={style.txt}>Approve</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

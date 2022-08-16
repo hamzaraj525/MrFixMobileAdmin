@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Image, TouchableOpacity, View, Modal, Text} from 'react-native';
 import style from './../Modal/style';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const PersonalServiceModal = props => {
   return (
     <Modal
@@ -16,6 +16,7 @@ const PersonalServiceModal = props => {
           <Text style={style.exploreHeader}>Select a Category </Text>
           <View style={style.exploreContent}>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[style.singleExplore, {backgroundColor: '#f44a53'}]}
               onPress={() => {
                 props.placeCategory('Ban Jao Beautifull');
@@ -25,11 +26,12 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/woman-2.png')}
                 style={style.imgStyle}
               />
-              <Text numberOfLines={1} style={style.exploreText}>
+              {/* <Text numberOfLines={1} style={style.exploreText}>
                 Ban Jao B..
-              </Text>
+              </Text> */}
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[style.singleExplore, {backgroundColor: '#fb8634'}]}
               onPress={() => {
                 props.placeCategory('Facial');
@@ -39,9 +41,10 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/facial.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>Facial</Text>
+              {/* <Text style={style.exploreText}>Facial</Text> */}
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[style.singleExplore, {backgroundColor: '#FACA2E'}]}
               onPress={() => {
                 props.placeCategory('Mehndi Service');
@@ -51,9 +54,10 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/henna.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>Mehndi S..</Text>
+              {/* <Text style={style.exploreText}>Mehndi S..</Text> */}
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[style.singleExplore, {backgroundColor: '#21D973'}]}
               onPress={() => {
                 props.placeCategory('Makeup');
@@ -63,9 +67,10 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/makeover.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>Makeup</Text>
+              {/* <Text style={style.exploreText}>Makeup</Text> */}
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[
                 style.singleExplore,
                 {
@@ -82,9 +87,10 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/manicure.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>Mani Pedi</Text>
+              {/* <Text style={style.exploreText}>Mani Pedi</Text> */}
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[
                 style.singleExplore,
                 {
@@ -101,9 +107,10 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/massage.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>Massage</Text>
+              {/* <Text style={style.exploreText}>Massage</Text> */}
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 props.placeCategory('Hair Treatment');
                 props.hideModal();
@@ -119,9 +126,10 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/hairdryer.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>Hair Treat..</Text>
+              {/* <Text style={style.exploreText}>Hair Treat..</Text> */}
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 props.placeCategory('Waxing');
                 props.hideModal();
@@ -138,9 +146,10 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/wax-2.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>Waxing</Text>
+              {/* <Text style={style.exploreText}>Waxing</Text> */}
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[
                 style.singleExplore,
                 {
@@ -152,12 +161,8 @@ const PersonalServiceModal = props => {
               onPress={() => {
                 props.hideModal();
               }}>
-              {/* <MaterialIcons
-                  name="sports-basketball"
-                  size={22}
-                  color={'white'}
-                /> */}
-              <Text style={style.exploreText}></Text>
+              <MaterialIcons name="comment" size={22} color={'white'} />
+              {/* <Text style={style.exploreText}>Coming..</Text> */}
             </TouchableOpacity>
           </View>
         </View>

@@ -21,7 +21,7 @@ function OrderDetail({navigation, route, props}) {
           style={[
             styles.subViews,
             {
-              alignSelf: 'flex-start',
+              alignSelf: 'center',
               marginTop: 10,
               borderRadius: 12,
               width: '90%',
@@ -46,21 +46,21 @@ function OrderDetail({navigation, route, props}) {
           <Text
             style={[
               styles.txt,
-              {fontSize: 19, fontWeight: '500', color: 'black'},
+              {fontSize: 16, fontWeight: '500', color: 'black'},
             ]}>
             {Items.userName}
           </Text>
           <Text
             style={[
               styles.txt,
-              {fontSize: 15, fontWeight: '700', color: 'grey'},
+              {fontSize: 12, fontWeight: '700', color: 'grey'},
             ]}>
             {Items.userMail}
           </Text>
           <Text
             style={[
               styles.txt,
-              {fontSize: 15, fontWeight: '500', color: 'black'},
+              {fontSize: 13, fontWeight: '500', color: 'black'},
             ]}>
             {Items.userContact}
           </Text>
@@ -69,11 +69,11 @@ function OrderDetail({navigation, route, props}) {
           style={[
             styles.subViews,
             {
-              alignSelf: 'flex-start',
+              alignSelf: 'center',
               marginTop: '3%',
               alignItems: 'flex-start',
               borderRadius: 12,
-              width: '80%',
+              width: '90%',
               height: 100,
               backgroundColor: '#EDF6FF',
               paddingHorizontal: '4%',
@@ -82,7 +82,7 @@ function OrderDetail({navigation, route, props}) {
           <Text
             style={[
               styles.txt,
-              {fontSize: 18, fontWeight: '600', color: '#2459a9'},
+              {fontSize: 18, marginTop: 0, fontWeight: '600', color: '#2459a9'},
             ]}>
             Location Address
           </Text>
@@ -99,10 +99,10 @@ function OrderDetail({navigation, route, props}) {
             styles.subViews,
             {
               marginTop: '3%',
-              alignSelf: 'flex-start',
+              alignSelf: 'center',
               alignItems: 'flex-start',
               borderRadius: 12,
-              width: '70%',
+              width: '90%',
               height: 80,
               marginTop: '3%',
               backgroundColor: '#EDF6FF',
@@ -139,41 +139,32 @@ function OrderDetail({navigation, route, props}) {
           <View
             style={[
               styles.productContainer,
-              {backgroundColor: index % 2 === 0 ? '#fdeae4' : '#EDF6FF'},
+              {
+                alignItems: 'center',
+                flexDirection: 'column',
+                justifyContent: 'space-evenly',
+                backgroundColor: index % 2 === 0 ? '#fdeae4' : '#EDF6FF',
+              },
             ]}>
-            <View
+            <Text
               style={[
-                styles.productContainer,
+                styles.txt,
                 {
-                  paddingHorizontal: '2%',
-                  borderRadius: 12,
-                  marginTop: 0,
-                  width: 140,
-                  flexDirection: 'column',
-                  height: 160,
-                  alignItems: 'center',
-                  justifyContent: 'space-evenly',
+                  fontSize: 14,
+                  alignSelf: 'flex-end',
+                  right: '4%',
+                  fontWeight: '800',
+                  color: '#2459a9',
                 },
               ]}>
-              <Text
-                style={[
-                  styles.txt,
-                  {
-                    fontSize: 14,
-                    alignSelf: 'flex-end',
-                    fontWeight: '800',
-                    color: '#2459a9',
-                  },
-                ]}>
-                Rs {item.Price}
-              </Text>
-              <Image
-                style={{borderRadius: 12, width: 130, height: 130}}
-                source={{
-                  uri: item.img,
-                }}
-              />
-            </View>
+              Rs {item.Price}
+            </Text>
+            <Image
+              style={{borderRadius: 12, width: 130, height: 130}}
+              source={{
+                uri: item.img,
+              }}
+            />
             <Text style={{fontSize: 16, color: 'black', alignSelf: 'center'}}>
               {item.title}
             </Text>
@@ -189,6 +180,7 @@ function OrderDetail({navigation, route, props}) {
     <SafeAreaView style={{flex: 1, backgroundColor: '#f9f9f9'}}>
       <View
         style={{
+          alignSelf: 'center',
           marginTop: '4%',
           alignItems: 'center',
           justifyContent: 'center',

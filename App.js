@@ -11,9 +11,11 @@ import UploadHomeService from './src/UploadHomeService/UploadHomeService';
 import UpdateHomeServices from './src/UpdateHomeServices/UpdateHomeServices';
 import UpdatePersonal from './src/UpdatePersonal/UpdatePersonal';
 import UploadPersonalService from './src/UploadPersonalService/UploadPersonalService';
+import ApproveScreen from './src/ApproveScreen/ApproveScreen';
+import Details from './src/Details/Details';
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-// const Tab = createMaterialTopTabNavigator();
 
 function App() {
   return (
@@ -57,6 +59,16 @@ function App() {
           options={{header: () => null}}
           name="UploadPersonalService"
           component={UploadPersonalService}
+        />
+        <Stack.Screen
+          options={{header: () => null}}
+          name="ApproveScreen"
+          component={ApproveScreen}
+        />
+        <Stack.Screen
+          options={{header: () => null}}
+          name="Details"
+          component={Details}
         />
       </Stack.Navigator>
     </NavigationContainer>

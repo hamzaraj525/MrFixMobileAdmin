@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
+  Pressable,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import style from './style';
@@ -15,17 +16,18 @@ function UpdateHomeServices({navigation}) {
   const [list, setList] = useState([]);
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const [txtArray, setTextArr] = useState([]);
 
   useEffect(() => {
     HomeServicesData();
   }, []);
 
-  const updateData = ({item, index}) => {
+  const updateData = ({text, index}) => {
     firestore()
       .collection('Services')
-      .doc(item.key)
+      .doc()
       .update({
-        title: code,
+        title: text,
       })
       .then(() => {
         console.log('Data updated!');
@@ -42,10 +44,9 @@ function UpdateHomeServices({navigation}) {
           style={style.TiName}
           value={item.title}
           onChangeText={text => {
-            updateData(text, {item, index});
-          }}
-          onEndEditing={() => {
-            updateData({item, index});
+            emtyArr = [...list];
+            emtyArr[index] = text;
+            setList(emtyArr);
           }}
         />
       </View>
@@ -53,18 +54,20 @@ function UpdateHomeServices({navigation}) {
   };
 
   const HomeServicesData = () => {
+    setLoading(true);
     var newArray = [];
     firestore()
       .collection('Services')
       .get()
       .then(querySnapshot => {
-        console.log('Total services: ', querySnapshot.size);
+        console.log('Total services------: ', querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
           newArray.push(documentSnapshot.data());
+          console.log('Data---id: ', documentSnapshot.id);
         });
       })
       .then(testing => {
-        console.log('New Home Push is =', newArray);
+        // console.log('New Home Push is =', newArray);
         setLoading(false);
         setList(newArray);
       })
@@ -93,6 +96,13 @@ function UpdateHomeServices({navigation}) {
           />
         </>
       )}
+      <Pressable
+        style={{alignSelf: 'center', marginTop: 20}}
+        onPress={() => {
+          updateData(list);
+        }}>
+        <Text>Button</Text>
+      </Pressable>
     </SafeAreaView>
   );
 }

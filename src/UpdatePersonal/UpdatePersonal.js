@@ -53,6 +53,7 @@ function UpdatePersonal({navigation}) {
   };
 
   const personalServicesData = () => {
+    setLoading(true);
     var newArray = [];
     firestore()
       .collection('PersonalServices')

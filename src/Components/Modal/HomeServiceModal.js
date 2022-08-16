@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Image, TouchableOpacity, View, Modal, Text} from 'react-native';
 import style from './../Modal/style';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const HomeServiceModal = props => {
   return (
     <Modal
@@ -16,6 +16,7 @@ const HomeServiceModal = props => {
           <Text style={style.exploreHeader}>Select a Category </Text>
           <View style={style.exploreContent}>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[style.singleExplore, {backgroundColor: '#f44a53'}]}
               onPress={() => {
                 props.placeCategory('AC Services');
@@ -30,6 +31,7 @@ const HomeServiceModal = props => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[style.singleExplore, {backgroundColor: '#fb8634'}]}
               onPress={() => {
                 props.placeCategory('Car Services');
@@ -42,6 +44,7 @@ const HomeServiceModal = props => {
               <Text style={style.exploreText}>Car</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[style.singleExplore, {backgroundColor: '#FACA2E'}]}
               onPress={() => {
                 props.placeCategory('Geyser');
@@ -54,6 +57,7 @@ const HomeServiceModal = props => {
               <Text style={style.exploreText}>Water-he..</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[style.singleExplore, {backgroundColor: '#21D973'}]}
               onPress={() => {
                 props.placeCategory('Cleaning');
@@ -66,6 +70,7 @@ const HomeServiceModal = props => {
               <Text style={style.exploreText}>Broom</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[
                 style.singleExplore,
                 {
@@ -85,6 +90,7 @@ const HomeServiceModal = props => {
               <Text style={style.exploreText}>Electrician</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[
                 style.singleExplore,
                 {
@@ -104,6 +110,7 @@ const HomeServiceModal = props => {
               <Text style={style.exploreText}>washing..</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 props.placeCategory('Painter');
                 props.hideModal();
@@ -122,6 +129,7 @@ const HomeServiceModal = props => {
               <Text style={style.exploreText}>painter..</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               onPress={() => {
                 props.placeCategory('Plumber');
                 props.hideModal();
@@ -141,6 +149,7 @@ const HomeServiceModal = props => {
               <Text style={style.exploreText}>Plumber..</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              activeOpacity={0.8}
               style={[
                 style.singleExplore,
                 {
@@ -152,12 +161,8 @@ const HomeServiceModal = props => {
               onPress={() => {
                 props.hideModal();
               }}>
-              {/* <MaterialIcons
-                  name="sports-basketball"
-                  size={22}
-                  color={'white'}
-                /> */}
-              <Text style={style.exploreText}></Text>
+              <MaterialIcons name="comment" size={22} color={'white'} />
+              <Text style={style.exploreText}>Coming..</Text>
             </TouchableOpacity>
           </View>
         </View>

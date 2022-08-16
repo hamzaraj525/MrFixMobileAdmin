@@ -91,7 +91,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   imgStyle: {
-    width: 28,
-    height: 28,
+    width: 34,
+    height: 34,
   },
 });

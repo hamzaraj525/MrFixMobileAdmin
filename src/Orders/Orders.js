@@ -46,14 +46,8 @@ function Orders({navigation}) {
             userMail: child.val().userMail,
             userContact: child.val().userContact,
           });
-
-          // if (child.val().key !== null) {
-          //   showScheduleNotification();
-          // } else {
-          //   console.log('no notification');
-          // }
         });
-        // showScheduleNotification();
+
         setList(li);
       });
   }, []);
@@ -61,19 +55,45 @@ function Orders({navigation}) {
   const renderHeader = ({item}) => {
     return (
       <View style={{}}>
-        <Text
-          style={{
-            color: '#2459a9',
-            marginLeft: '7%',
-            fontWeight: '600',
-            fontSize: 20,
-            marginTop: '4%',
-          }}>
-          All Orders
-        </Text>
         <View
           style={{
-            marginTop: '6%',
+            marginTop: '4%',
+            alignSelf: 'flex-start',
+            left: '7%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text
+            style={{
+              color: '#2459a9',
+              fontWeight: '600',
+              fontSize: 20,
+            }}>
+            All Orders
+          </Text>
+
+          <View
+            style={{
+              marginTop: '0.5%',
+              paddingHorizontal: '5%',
+              backgroundColor: 'grey',
+              height: 1,
+              width: 90,
+            }}
+          />
+          <View
+            style={{
+              marginTop: '0.5%',
+              paddingHorizontal: '5%',
+              backgroundColor: 'grey',
+              height: 1,
+              width: 80,
+            }}
+          />
+        </View>
+        <View
+          style={{
+            marginTop: '4%',
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-evenly',

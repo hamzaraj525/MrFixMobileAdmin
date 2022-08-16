@@ -39,7 +39,8 @@ const UploadPersonalService = ({navigation}) => {
   };
 
   const postData = async () => {
-    const imageUpload = await uploadImage();
+    const newReference = firestore().collection('PersonalServices');
+
     if (
       title === '' ||
       subTitle === '' ||
@@ -49,14 +50,15 @@ const UploadPersonalService = ({navigation}) => {
     ) {
       alert('Please fill all the fields');
     } else {
-      firestore()
-        .collection('PersonalServices')
+      const imageUpload = await uploadImage();
+      newReference
         .add({
           title: title,
           subTitle: subTitle,
           Price: Price,
           type: category,
           img: imageUpload,
+          key: new Date().getTime() + 1000 * 60 * 60 * 24 * 30,
         })
         .then(() => {
           setLoader(false);
@@ -64,7 +66,7 @@ const UploadPersonalService = ({navigation}) => {
       setTitle('');
       setSubTitle('');
       setPrice('');
-      setCategory('');
+      setCategory('Category');
       setImage(null);
     }
   };
@@ -152,9 +154,11 @@ const UploadPersonalService = ({navigation}) => {
             New Listing
           </Text>
           <TouchableOpacity
+            activeOpacity={0.8}
             onPress={choosePhotoFromLibrary}
             style={{
-              backgroundColor: '#FFC0CB',
+              backgroundColor: showModal ? 'grey' : '#EDF6FF',
+
               alignItems: 'center',
               justifyContent: 'center',
               marginBottom: 10,
@@ -163,7 +167,11 @@ const UploadPersonalService = ({navigation}) => {
               height: 110,
             }}>
             {image === null ? (
-              <MaterialCommunityIcons name="camera" size={30} color={'grey'} />
+              <MaterialCommunityIcons
+                name="camera"
+                size={30}
+                color={showModal ? '#000000aa' : 'grey'}
+              />
             ) : (
               <Image
                 source={{uri: image}}
@@ -175,11 +183,26 @@ const UploadPersonalService = ({navigation}) => {
               />
             )}
           </TouchableOpacity>
-          <View style={style.passwordContainer}>
-            <MaterialCommunityIcons name="pencil" size={20} color={'pink'} />
+          <View
+            style={[
+              style.passwordContainer,
+              {
+                backgroundColor: showModal ? 'grey' : '#F6F3F5',
+              },
+            ]}>
+            <MaterialCommunityIcons
+              name="pencil"
+              size={20}
+              color={showModal ? '#000000aa' : 'grey'}
+            />
             <TextInput
               value={title}
-              style={{width: '90%', marginLeft: 6}}
+              style={{
+                width: '90%',
+
+                height: 45,
+                marginLeft: 6,
+              }}
               onChangeText={text => setTitle(text)}
               placeholder="Title"
               placeholderTextColor={'#000'}
@@ -188,24 +211,41 @@ const UploadPersonalService = ({navigation}) => {
           <View
             style={[
               style.passwordContainer,
-              {alignSelf: 'flex-start', width: '30%'},
+              {
+                alignSelf: 'flex-start',
+                width: '30%',
+                backgroundColor: showModal ? 'grey' : '#F6F3F5',
+              },
             ]}>
-            <FontAwesome name="dollar" size={20} color={'pink'} />
+            <FontAwesome
+              name="dollar"
+              size={20}
+              color={showModal ? '#000000aa' : 'grey'}
+            />
             <TextInput
+              keyboardType="numeric"
               value={Price}
-              style={{marginLeft: 14}}
+              style={{marginLeft: 14, height: 45}}
               onChangeText={text => setPrice(text)}
               placeholder="Price"
               placeholderTextColor={'#000'}
             />
           </View>
           <TouchableOpacity
+            activeOpacity={0.8}
             onPress={() => {
               setShowModal(true);
             }}
-            style={style.categBtn}>
+            style={[
+              style.categBtn,
+              {backgroundColor: showModal ? 'grey' : '#F6F3F5'},
+            ]}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Ionicons name="apps-sharp" size={20} color={'pink'} />
+              <Ionicons
+                name="apps-sharp"
+                size={20}
+                color={showModal ? '#000000aa' : 'grey'}
+              />
               <Text
                 style={{
                   marginLeft: 6,
@@ -213,20 +253,41 @@ const UploadPersonalService = ({navigation}) => {
                 {category ? category : 'Category'}
               </Text>
             </View>
-            <SimpleLineIcons name="arrow-down" size={10} color={'pink'} />
+            <SimpleLineIcons
+              name="arrow-down"
+              size={10}
+              color={showModal ? '#000000aa' : 'grey'}
+            />
           </TouchableOpacity>
           <View
-            style={[style.passwordContainer, {marginBottom: 0, width: '100%'}]}>
-            <AntDesign name="calendar" size={20} color={'pink'} />
+            style={[
+              style.passwordContainer,
+              {
+                backgroundColor: showModal ? 'grey' : '#F6F3F5',
+                marginBottom: 0,
+                width: '100%',
+              },
+            ]}>
+            <AntDesign
+              name="calendar"
+              size={20}
+              color={showModal ? '#000000aa' : 'grey'}
+            />
             <TextInput
               value={subTitle}
-              style={{width: '90%', marginLeft: 6}}
+              style={{
+                width: '90%',
+                marginLeft: 6,
+
+                height: 45,
+              }}
               onChangeText={text => setSubTitle(text)}
               placeholder="SubTitle"
               placeholderTextColor={'#000'}
             />
           </View>
           <TouchableOpacity
+            activeOpacity={0.8}
             onPress={() => {
               postData();
             }}
