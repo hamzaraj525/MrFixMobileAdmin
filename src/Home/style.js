@@ -20,10 +20,20 @@ export default StyleSheet.create({
   subViews: {
     borderRadius: 20,
     backgroundColor: 'red',
-    width: 140,
-    height: 140,
+    width: Dimensions.get('window').width / 3,
+    height: Dimensions.get('window').height / 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
   txt: {marginTop: 5, color: 'white', fontSize: 18, fontWeight: '600'},
+  subContainer: {
+    marginLeft: 5,
+    width: 25,
+    height: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1.8,
+    borderRadius: 25 / 2,
+    borderColor: 'white',
+  },
 });

@@ -16,7 +16,7 @@ function OrderDetail({navigation, route, props}) {
 
   const renderFooter = ({item, index}) => {
     return (
-      <View style={{paddingHorizontal: '4%'}}>
+      <View style={{paddingHorizontal: '4%', paddingBottom: 20}}>
         <View
           style={[
             styles.subViews,

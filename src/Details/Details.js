@@ -157,7 +157,7 @@ function Details({navigation, route}) {
             Back
           </Text>
         </Pressable>
-        <Pressable
+        {/* <Pressable
           style={[style.contiBtn, {backgroundColor: 'black', marginTop: '1%'}]}
           onPress={() => {
             disableFixer();
@@ -168,9 +168,9 @@ function Details({navigation, route}) {
               fontSize: 15,
               fontWeight: '700',
             }}>
-            Delete
+            Block
           </Text>
-        </Pressable>
+        </Pressable> */}
       </>
     );
   };

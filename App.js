@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, LogBox} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './src/Home/Home';
 import Orders from './src/Orders/Orders';
@@ -16,6 +16,7 @@ import Details from './src/Details/Details';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+LogBox.ignoreAllLogs(true);
 
 function App() {
   return (

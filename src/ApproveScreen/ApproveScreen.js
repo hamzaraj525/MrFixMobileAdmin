@@ -211,7 +211,7 @@ function ApproveScreen({navigation}) {
         flex: 1,
         backgroundColor: 'white',
       }}>
-      <Text
+      {/* <Text
         style={{
           fontFamily: 'RobotoSlab-Bold',
           fontSize: 20,
@@ -221,7 +221,7 @@ function ApproveScreen({navigation}) {
           alignSelf: 'center',
         }}>
         Approve
-      </Text>
+      </Text> */}
 
       <View style={style.btnContainer}>
         <Pressable

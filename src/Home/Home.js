@@ -4,22 +4,52 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Dimensions,
   ScrollView,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import style from './style';
 import database from '@react-native-firebase/database';
+const {width, height} = Dimensions.get('window');
 const Home = ({navigation}) => {
   const [list, setList] = useState([]);
+  const [fixer, setFixer] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [fixerPending, setFixerPending] = useState('');
 
   useEffect(() => {
+    CartItemsData();
+    FixersData();
+    UsersData();
+  }, []);
+
+  const UsersData = () => {
+    database()
+      .ref('/users')
+      .on('value', snapshot => {
+        var li = [];
+        snapshot.forEach(child => {
+          li.push({
+            key: child.key,
+            userPhone: child.val().userPhone,
+            userName: child.val().userName,
+            userMail: child.val().userMail,
+            userId: child.val().userId,
+          });
+        });
+
+        setUsers(li);
+      });
+  };
+
+  const CartItemsData = () => {
     database()
       .ref('/cartItems')
       .on('value', snapshot => {
         var li = [];
         snapshot.forEach(child => {
-          // console.log(child.val());
           li.push({
             key: child.key,
             TotalPrice: child.val().TotalPrice,
@@ -33,45 +63,74 @@ const Home = ({navigation}) => {
 
         setList(li);
       });
-  }, []);
+  };
+
+  const FixersData = () => {
+    database()
+      .ref('/riders')
+      .on('value', snapshot => {
+        var li = [];
+        snapshot.forEach(child => {
+          li.push({
+            key: child.key,
+            FixerPic1: child.val().FixerPic1,
+            FixerPic2: child.val().FixerPic2,
+            FixerPic3: child.val().FixerPic3,
+            pic1Verified: child.val().pic1Verified,
+            pic2Verified: child.val().pic2Verified,
+            pic3Verified: child.val().pic3Verified,
+            userPhone: child.val().userPhone,
+            userName: child.val().userName,
+            userMail: child.val().userMail,
+            userId: child.val().userId,
+          });
+        });
+        setFixerPending(li.length);
+        setFixer(li);
+      });
+  };
 
   return (
     <SafeAreaView style={style.container}>
-      <Text
-        style={{
-          alignSelf: 'center',
-          marginTop: 30,
-          fontSize: 40,
-          color: 'black',
-        }}>
-        Admin
-      </Text>
-      <ScrollView contentContainerStyle={{paddingBottom: 10}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingBottom: '6%'}}>
         <View style={style.mainSubViewContainer}>
+          <Text
+            style={{
+              alignSelf: 'flex-start',
+              left: 20,
+              marginTop: 20,
+              marginBottom: 5,
+              fontSize: 31,
+              color: '#3372e2',
+            }}>
+            Hi! there...
+          </Text>
           <View
             style={[
               style.subViews,
               {
                 alignItems: 'flex-start',
                 borderRadius: 12,
-                width: '82%',
-                height: '15%',
-                marginTop: '0%',
-                backgroundColor: '#EDF6FF',
+                width: width - 60,
+                height: height / 6,
+                marginTop: '2%',
+                backgroundColor: '#3372e2',
                 paddingHorizontal: '4%',
               },
             ]}>
             <Text
               style={[
                 style.txt,
-                {fontSize: 19, fontWeight: '600', color: 'black'},
+                {fontSize: 19, fontWeight: '700', color: 'white'},
               ]}>
               Total Orders
             </Text>
             <Text
               style={[
                 style.txt,
-                {fontSize: 36, fontWeight: '700', color: '#2459a9'},
+                {fontSize: 30, fontWeight: '600', color: 'white'},
               ]}>
               {list.length}
             </Text>
@@ -123,7 +182,7 @@ const Home = ({navigation}) => {
               onPress={() => {
                 navigation.navigate('UploadHomeService');
               }}
-              style={[style.subViews, {backgroundColor: 'grey'}]}>
+              style={[style.subViews, {backgroundColor: 'red'}]}>
               <MaterialCommunityIcons
                 name="home-floor-a"
                 size={38}
@@ -138,7 +197,7 @@ const Home = ({navigation}) => {
               onPress={() => {
                 navigation.navigate('Orders');
               }}
-              style={[style.subViews, {}]}>
+              style={[style.subViews, {backgroundColor: 'orange'}]}>
               <Ionicons name="md-newspaper" size={30} color="#fff" />
               <Text style={[style.txt, {}]}> Orders</Text>
             </TouchableOpacity>
@@ -147,14 +206,99 @@ const Home = ({navigation}) => {
               onPress={() => {
                 navigation.navigate('ApproveScreen');
               }}
-              style={[style.subViews, {backgroundColor: 'grey'}]}>
-              <MaterialCommunityIcons
-                name="home-floor-a"
-                size={38}
-                color="#fff"
-              />
-              <Text style={style.txt}>Approve</Text>
+              style={[style.subViews, {backgroundColor: '#DA2328'}]}>
+              <MaterialIcons name="verified" size={30} color="#fff" />
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  marginTop: 5,
+                }}>
+                <Text style={[style.txt, {marginTop: 0}]}>Verify</Text>
+                {fixer.map((item, index) => {
+                  return (
+                    <View key={item.key}>
+                      {item.pic1Verified !== true ||
+                      item.pic2Verified !== true ||
+                      item.pic3Verified !== true ? (
+                        <View style={style.subContainer}>
+                          <Text
+                            style={[style.txt, {fontSize: 15, marginTop: 1}]}>
+                            {fixer.length}
+                          </Text>
+                        </View>
+                      ) : null}
+                    </View>
+                  );
+                })}
+              </View>
             </TouchableOpacity>
+          </View>
+
+          <View
+            style={[
+              style.subViews,
+              {
+                alignItems: 'flex-start',
+                borderRadius: 12,
+                width: width - 60,
+                height: height / 6,
+                backgroundColor: '#3372e2',
+                paddingHorizontal: '4%',
+              },
+            ]}>
+            <Text style={[style.txt, {fontWeight: '700'}]}>Total Experts</Text>
+            {fixer.map((item, index) => {
+              return (
+                <View key={item.key}>
+                  {item.pic1Verified === true &&
+                  item.pic2Verified === true &&
+                  item.pic3Verified === true ? (
+                    <View style={style.subContainer}>
+                      <Text
+                        style={[
+                          style.txt,
+                          {fontSize: 30, fontWeight: '600', color: 'white'},
+                        ]}>
+                        {fixer.length}
+                      </Text>
+                    </View>
+                  ) : (
+                    <Text
+                      style={[
+                        style.txt,
+                        {fontSize: 30, marginTop: 1, fontWeight: '700'},
+                      ]}>
+                      0
+                    </Text>
+                  )}
+                </View>
+              );
+            })}
+          </View>
+          <View
+            style={[
+              style.subViews,
+              {
+                marginTop: '2%',
+                alignItems: 'flex-start',
+                borderRadius: 12,
+                width: width - 60,
+                height: height / 6,
+                backgroundColor: '#3372e2',
+                paddingHorizontal: '4%',
+              },
+            ]}>
+            <Text style={[style.txt, {fontWeight: '700'}]}>Total Users</Text>
+
+            <Text
+              style={[
+                style.txt,
+                {fontSize: 30, fontWeight: '600', color: 'white'},
+              ]}>
+              {users.length}
+            </Text>
           </View>
         </View>
       </ScrollView>

@@ -1,27 +1,31 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  listItem: {margin: 10, backgroundColor: 'red'},
-  TiName: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#fff',
+  img: {borderRadius: 10, width: 100, height: 100},
+  parent: {
+    width: Dimensions.get('window').width / 2,
   },
-  listHeaderTxt: {
-    marginTop: 20,
-    marginBottom: 6,
-    color: 'black',
-    paddingHorizontal: '3%',
-    fontWeight: '600',
-    fontSize: 17,
+  subPraent: {
+    marginBottom: '4%',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
-  uploadTxt: {
-    fontSize: 16,
-    color: '#0000ff',
-    marginTop: 10,
+  productContainer: {
+    borderRadius: 12,
+    backgroundColor: '#fdeae4',
+    marginTop: '5%',
+    width: 160,
+    height: 220,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
-  loaderStyle: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  subViews: {
+    borderRadius: 20,
+    backgroundColor: 'red',
+    width: 140,
+    height: 140,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  txt: {marginTop: 5, color: 'white', fontSize: 18, fontWeight: '600'},
 });

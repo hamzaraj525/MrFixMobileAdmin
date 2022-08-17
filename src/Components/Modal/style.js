@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+const {width, height} = Dimensions.get('window');
 export default StyleSheet.create({
   labelInputText: {
     textAlign: 'left',
@@ -21,16 +22,16 @@ export default StyleSheet.create({
     backgroundColor: 'orange',
   },
   containerContent: {
-    width: '100%',
+    width: width,
+    height: height / 1.6,
     backgroundColor: 'white',
-    borderTopLeftRadius: 35,
-    borderTopRightRadius: 35,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     alignItems: 'center',
     flexDirection: 'column',
     position: 'absolute',
     bottom: 0,
-    height: '60%',
-    paddingVertical: '8%',
+    justifyContent: 'center',
   },
 
   exploreSection: {

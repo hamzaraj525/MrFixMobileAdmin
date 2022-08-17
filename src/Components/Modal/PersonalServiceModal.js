@@ -26,9 +26,9 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/woman-2.png')}
                 style={style.imgStyle}
               />
-              {/* <Text numberOfLines={1} style={style.exploreText}>
+              <Text numberOfLines={1} style={style.exploreText}>
                 Ban Jao B..
-              </Text> */}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -41,7 +41,7 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/facial.png')}
                 style={style.imgStyle}
               />
-              {/* <Text style={style.exploreText}>Facial</Text> */}
+              <Text style={style.exploreText}>Facial</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -54,7 +54,7 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/henna.png')}
                 style={style.imgStyle}
               />
-              {/* <Text style={style.exploreText}>Mehndi S..</Text> */}
+              <Text style={style.exploreText}>Mehndi S..</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -67,7 +67,7 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/makeover.png')}
                 style={style.imgStyle}
               />
-              {/* <Text style={style.exploreText}>Makeup</Text> */}
+              <Text style={style.exploreText}>Makeup</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -87,7 +87,7 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/manicure.png')}
                 style={style.imgStyle}
               />
-              {/* <Text style={style.exploreText}>Mani Pedi</Text> */}
+              <Text style={style.exploreText}>Mani Pedi</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -107,7 +107,7 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/massage.png')}
                 style={style.imgStyle}
               />
-              {/* <Text style={style.exploreText}>Massage</Text> */}
+              <Text style={style.exploreText}>Massage</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -126,7 +126,7 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/hairdryer.png')}
                 style={style.imgStyle}
               />
-              {/* <Text style={style.exploreText}>Hair Treat..</Text> */}
+              <Text style={style.exploreText}>Hair Treat..</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -146,7 +146,7 @@ const PersonalServiceModal = props => {
                 source={require('./../../../assets/Images/wax-2.png')}
                 style={style.imgStyle}
               />
-              {/* <Text style={style.exploreText}>Waxing</Text> */}
+              <Text style={style.exploreText}>Waxing</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -162,7 +162,7 @@ const PersonalServiceModal = props => {
                 props.hideModal();
               }}>
               <MaterialIcons name="comment" size={22} color={'white'} />
-              {/* <Text style={style.exploreText}>Coming..</Text> */}
+              <Text style={style.exploreText}>Coming..</Text>
             </TouchableOpacity>
           </View>
         </View>
