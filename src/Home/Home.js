@@ -141,12 +141,18 @@ const Home = ({navigation}) => {
               onPress={() => {
                 navigation.navigate('UploadPersonalService');
               }}
-              style={[style.subViews, {backgroundColor: '#DA2328'}]}>
+              style={[
+                style.subViews,
+                {
+                  backgroundColor: '#DA2328',
+                },
+              ]}>
               <MaterialCommunityIcons
                 name="face-man-shimmer"
-                size={30}
-                color="#fff"
+                size={27}
+                color="white"
               />
+
               <Text style={style.txt}> Upload</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -215,23 +221,21 @@ const Home = ({navigation}) => {
                   flexDirection: 'row',
                   marginTop: 5,
                 }}>
+                {/* {fixer.map(i => {
+                  if (
+                    i.pic1Verified === true ||
+                    i.pic2Verified === true ||
+                    i.pic3Verified === true
+                  ) {
+                    return (
+                      <Text key={i.key} style={[style.txt, {marginTop: 0}]}>
+                        {fixer.length}
+                      </Text>
+                    );
+                  }
+                })} */}
+
                 <Text style={[style.txt, {marginTop: 0}]}>Verify</Text>
-                {fixer.map((item, index) => {
-                  return (
-                    <View key={item.key}>
-                      {item.pic1Verified !== true ||
-                      item.pic2Verified !== true ||
-                      item.pic3Verified !== true ? (
-                        <View style={style.subContainer}>
-                          <Text
-                            style={[style.txt, {fontSize: 15, marginTop: 1}]}>
-                            {fixer.length}
-                          </Text>
-                        </View>
-                      ) : null}
-                    </View>
-                  );
-                })}
               </View>
             </TouchableOpacity>
           </View>
@@ -249,33 +253,14 @@ const Home = ({navigation}) => {
               },
             ]}>
             <Text style={[style.txt, {fontWeight: '700'}]}>Total Experts</Text>
-            {fixer.map((item, index) => {
-              return (
-                <View key={item.key}>
-                  {item.pic1Verified === true &&
-                  item.pic2Verified === true &&
-                  item.pic3Verified === true ? (
-                    <View style={style.subContainer}>
-                      <Text
-                        style={[
-                          style.txt,
-                          {fontSize: 30, fontWeight: '600', color: 'white'},
-                        ]}>
-                        {fixer.length}
-                      </Text>
-                    </View>
-                  ) : (
-                    <Text
-                      style={[
-                        style.txt,
-                        {fontSize: 30, marginTop: 1, fontWeight: '700'},
-                      ]}>
-                      0
-                    </Text>
-                  )}
-                </View>
-              );
-            })}
+
+            <Text
+              style={[
+                style.txt,
+                {fontSize: 30, fontWeight: '600', color: 'white'},
+              ]}>
+              {fixer.length}
+            </Text>
           </View>
           <View
             style={[
@@ -291,7 +276,6 @@ const Home = ({navigation}) => {
               },
             ]}>
             <Text style={[style.txt, {fontWeight: '700'}]}>Total Users</Text>
-
             <Text
               style={[
                 style.txt,

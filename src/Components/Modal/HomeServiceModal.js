@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Image, TouchableOpacity, View, Modal, Text} from 'react-native';
 import style from './../Modal/style';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 const HomeServiceModal = props => {
   return (
     <Modal

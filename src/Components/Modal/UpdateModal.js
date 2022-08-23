@@ -30,7 +30,7 @@ const UpdateModal = props => {
       .update({
         title: title,
         subTitle: SubTitle,
-        price: Price,
+        Price: Price,
       })
       .then(() => {
         setLoading(false);

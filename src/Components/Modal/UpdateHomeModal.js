@@ -21,18 +21,17 @@ const UpdateHomeModal = props => {
   const [loading, setLoading] = useState(false);
 
   const updateData = () => {
-    const id = props.code;
-    const key = id.toString();
     setLoading(true);
     firestore()
-      .collection('personalServices')
-      .doc(key)
+      .collection('Services')
+      .doc(props.listId)
       .update({
         title: title,
         subTitle: SubTitle,
-        price: Price,
+        Price: Price,
       })
       .then(() => {
+        console.log('updated');
         setLoading(false);
         props.closeModal();
       });
@@ -95,7 +94,7 @@ const UpdateHomeModal = props => {
               {loading ? (
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
-                <Text style={styles.okBtnTxt}>{props.code}</Text>
+                <Text style={styles.okBtnTxt}>{props.listId}</Text>
               )}
             </Pressable>
           </View>
@@ -138,7 +137,7 @@ const styles = StyleSheet.create({
     marginLeft: 6,
   },
   loginBtn: {
-    width: width / 4,
+    width: width / 2,
     height: 35,
     borderRadius: 25,
     backgroundColor: 'red',

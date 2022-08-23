@@ -15,6 +15,8 @@ import style from './style';
 import UpdateHomeModal from './../Components/Modal/UpdateHomeModal';
 
 function UpdateHomeServices({navigation}) {
+  const [docId, setDocId] = useState('');
+  const [listId, setListId] = useState([]);
   const [list, setList] = useState([]);
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
@@ -31,7 +33,7 @@ function UpdateHomeServices({navigation}) {
   const HomeServicesList = ({item, index}) => {
     return (
       <TouchableOpacity
-        activeOpacity={0.8}
+        activeOpacity={0.6}
         onPress={() => {
           setCode(item.key);
           setUpdateModalVisible(true);
@@ -82,19 +84,23 @@ function UpdateHomeServices({navigation}) {
   const HomeServices = () => {
     setLoading(true);
     var newArray = [];
+    var newArray2 = [];
     firestore()
       .collection('Services')
       .get()
       .then(querySnapshot => {
-        console.log('Total services: ', querySnapshot.size);
+        console.log('Total Home services: ', querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
           newArray.push(documentSnapshot.data());
+          newArray2.push(documentSnapshot.id);
         });
       })
       .then(testing => {
-        console.log('New home Push is =', newArray);
+        console.log('New home Push is---', newArray);
         setLoading(false);
         setList(newArray);
+        setListId(newArray2);
+        console.log('--------' + newArray2);
       })
       .catch(error => {
         alert(error);
@@ -117,6 +123,7 @@ function UpdateHomeServices({navigation}) {
       </>
 
       <UpdateHomeModal
+        listId={listId}
         code={code}
         updateModalVisible={updateModalVisible}
         closeModal={closeModal}

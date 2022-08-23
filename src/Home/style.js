@@ -12,10 +12,10 @@ export default StyleSheet.create({
   },
   subViewContainer: {
     height: 170,
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('window').width - 60,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
   },
   subViews: {
     borderRadius: 20,
@@ -27,13 +27,13 @@ export default StyleSheet.create({
   },
   txt: {marginTop: 5, color: 'white', fontSize: 18, fontWeight: '600'},
   subContainer: {
-    marginLeft: 5,
-    width: 25,
-    height: 25,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1.8,
-    borderRadius: 25 / 2,
     borderColor: 'white',
+    borderRadius: 25 / 2,
+    width: 25,
+    height: 25,
+    marginLeft: 3,
   },
 });

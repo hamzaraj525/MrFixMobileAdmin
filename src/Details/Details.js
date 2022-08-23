@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Text,
   View,
@@ -14,6 +14,9 @@ import auth from '@react-native-firebase/auth';
 
 function Details({navigation, route}) {
   const {items} = route.params;
+  const [loader1, setLoder1] = useState(false);
+  const [loader2, setLoder2] = useState(false);
+  const [loader3, setLoder3] = useState(false);
 
   // const disableFixer = () => {
   //   auth()
@@ -30,32 +33,38 @@ function Details({navigation, route}) {
   // };
 
   const updateStatus1 = () => {
+    setLoder1(true);
     database()
       .ref('riders/' + items.key)
       .update({
         pic1Verified: true,
       })
       .then(() => {
+        setLoder1(false);
         console.log('--updated--1.');
       });
   };
   const updateStatus2 = () => {
+    setLoder2(true);
     database()
       .ref('riders/' + items.key)
       .update({
         pic2Verified: true,
       })
       .then(() => {
+        setLoder2(false);
         console.log('--updated--2.');
       });
   };
   const updateStatus3 = () => {
+    setLoder3(true);
     database()
       .ref('riders/' + items.key)
       .update({
         pic3Verified: true,
       })
       .then(() => {
+        setLoder3(false);
         console.log('--updated--3.');
       });
   };
@@ -80,18 +89,23 @@ function Details({navigation, route}) {
               source={{uri: items.FixerPic1}}
             />
             <Pressable
+              disabled={items.pic1Verified === true ? true : false}
               style={style.contiBtn}
               onPress={() => {
                 updateStatus1();
               }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 14,
-                  fontWeight: '700',
-                }}>
-                {items.pic1Verified === true ? 'Done' : 'Approve'}
-              </Text>
+              {loader1 ? (
+                <ActivityIndicator size={'small'} color={'white'} />
+              ) : (
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 14,
+                    fontWeight: '700',
+                  }}>
+                  {items.pic1Verified === true ? 'Done' : 'Approve'}
+                </Text>
+              )}
             </Pressable>
             <FastImage
               resizeMode="cover"
@@ -99,18 +113,23 @@ function Details({navigation, route}) {
               source={{uri: items.FixerPic2}}
             />
             <Pressable
+              disabled={items.pic2Verified === true ? true : false}
               style={style.contiBtn}
               onPress={() => {
                 updateStatus2();
               }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 14,
-                  fontWeight: '700',
-                }}>
-                {items.pic2Verified === true ? 'Done' : 'Approve'}
-              </Text>
+              {loader2 ? (
+                <ActivityIndicator size={'small'} color={'white'} />
+              ) : (
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 14,
+                    fontWeight: '700',
+                  }}>
+                  {items.pic2Verified === true ? 'Done' : 'Approve'}
+                </Text>
+              )}
             </Pressable>
             <FastImage
               resizeMode="cover"
@@ -118,18 +137,23 @@ function Details({navigation, route}) {
               source={{uri: items.FixerPic3}}
             />
             <Pressable
+              disabled={items.pic3Verified === true ? true : false}
               style={style.contiBtn}
               onPress={() => {
                 updateStatus3();
               }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 14,
-                  fontWeight: '700',
-                }}>
-                {items.pic3Verified === true ? 'Done' : 'Approve'}
-              </Text>
+              {loader3 ? (
+                <ActivityIndicator size={'small'} color={'white'} />
+              ) : (
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 14,
+                    fontWeight: '700',
+                  }}>
+                  {items.pic3Verified === true ? 'Done' : 'Approve'}
+                </Text>
+              )}
             </Pressable>
           </View>
         ) : (

@@ -94,9 +94,7 @@ function ApproveScreen({navigation}) {
                   flexDirection: 'row',
                   marginTop: 5,
                 }}>
-                <Text style={[style.subTitxt, {color: 'black'}]}>
-                  {item.userName}
-                </Text>
+                <Text style={[style.subTitxt, {color: 'black'}]}>Contact#</Text>
                 <Text style={[style.subTitxt, {color: 'black'}]}>
                   {item.userPhone}
                 </Text>

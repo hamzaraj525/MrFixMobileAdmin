@@ -86,7 +86,7 @@ function UpdatePersonal({navigation}) {
       .collection('PersonalServices')
       .get()
       .then(querySnapshot => {
-        console.log('Total services: ', querySnapshot.size);
+        console.log('Total personal services: ', querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
           newArray.push(documentSnapshot.data());
         });
