@@ -21,12 +21,10 @@ const UpdateModal = props => {
   const [loading, setLoading] = useState(false);
 
   const updateData = () => {
-    const id = props.code;
-    const key = id.toString();
     setLoading(true);
     firestore()
-      .collection('personalServices')
-      .doc(key)
+      .collection('PersonalServices')
+      .doc(props.code)
       .update({
         title: title,
         subTitle: SubTitle,
@@ -35,6 +33,9 @@ const UpdateModal = props => {
       .then(() => {
         setLoading(false);
         props.closeModal();
+      })
+      .catch(() => {
+        setLoading(false);
       });
   };
 
@@ -95,7 +96,7 @@ const UpdateModal = props => {
               {loading ? (
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
-                <Text style={styles.okBtnTxt}>{props.code}</Text>
+                <Text style={styles.okBtnTxt}>Ok</Text>
               )}
             </Pressable>
           </View>

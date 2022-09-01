@@ -49,8 +49,8 @@ const UploadHomeService = ({navigation}) => {
       alert('Please fill all the fields');
     } else {
       const imageUpload = await uploadImage();
-      firestore()
-        .collection('Services')
+      const newReference = firestore().collection('Services');
+      newReference
         .add({
           title: title,
           subTitle: subTitle,

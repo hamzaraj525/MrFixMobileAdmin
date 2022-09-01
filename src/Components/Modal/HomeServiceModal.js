@@ -108,7 +108,7 @@ const HomeServiceModal = props => {
                 source={require('./../../../assets/Images/washing-machine.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>washing..</Text>
+              <Text style={style.exploreText}>Washing..</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -127,7 +127,7 @@ const HomeServiceModal = props => {
                 source={require('./../../../assets/Images/painter.png')}
                 style={style.imgStyle}
               />
-              <Text style={style.exploreText}>painter..</Text>
+              <Text style={style.exploreText}>Painter..</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}

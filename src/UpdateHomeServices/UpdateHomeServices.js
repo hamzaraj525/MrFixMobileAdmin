@@ -1,18 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  ActivityIndicator,
-  Image,
-  TextInput,
-  Pressable,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import {View, FlatList, TouchableOpacity, Text} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import style from './style';
 import UpdateHomeModal from './../Components/Modal/UpdateHomeModal';
+import FastImage from 'react-native-fast-image';
 
 function UpdateHomeServices({navigation}) {
   const [docId, setDocId] = useState('');
@@ -35,7 +26,7 @@ function UpdateHomeServices({navigation}) {
       <TouchableOpacity
         activeOpacity={0.6}
         onPress={() => {
-          setCode(item.key);
+          setCode(item.id);
           setUpdateModalVisible(true);
         }}
         style={style.parent}>
@@ -50,17 +41,17 @@ function UpdateHomeServices({navigation}) {
                 backgroundColor: '#EDF6FF',
               },
             ]}>
-            {/* <Image
+            <FastImage
+              resizeMode={FastImage.resizeMode.cover}
+              priority={FastImage.priority.high}
               style={{borderRadius: 12, width: 130, height: 130}}
-              source={{
-                uri: item.img,
-              }}
-            /> */}
+              source={{uri: item.data.img}}
+            />
             <Text style={{fontSize: 16, color: 'black', alignSelf: 'center'}}>
-              {item.title}
+              {item.data.title}
             </Text>
             <Text style={{fontSize: 14, color: 'grey', alignSelf: 'center'}}>
-              {item.SubTitle}
+              {item.data.subTitle}
             </Text>
             <Text
               style={[
@@ -73,7 +64,7 @@ function UpdateHomeServices({navigation}) {
                   color: '#2459a9',
                 },
               ]}>
-              Rs {item.Price}
+              Rs {item.data.Price}
             </Text>
           </View>
         </View>
@@ -84,23 +75,22 @@ function UpdateHomeServices({navigation}) {
   const HomeServices = () => {
     setLoading(true);
     var newArray = [];
-    var newArray2 = [];
+
     firestore()
       .collection('Services')
       .get()
       .then(querySnapshot => {
-        console.log('Total Home services: ', querySnapshot.size);
+        // console.log('Total Home services: ', querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
-          newArray.push(documentSnapshot.data());
-          newArray2.push(documentSnapshot.id);
+          newArray.push({
+            id: documentSnapshot.id,
+            data: documentSnapshot.data(),
+          });
         });
       })
       .then(testing => {
-        console.log('New home Push is---', newArray);
         setLoading(false);
         setList(newArray);
-        setListId(newArray2);
-        console.log('--------' + newArray2);
       })
       .catch(error => {
         alert(error);

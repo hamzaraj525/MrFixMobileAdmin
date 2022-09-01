@@ -13,7 +13,7 @@ import {
 import firestore from '@react-native-firebase/firestore';
 import style from './style';
 import UpdateModal from './../Components/Modal/UpdateModal';
-
+import FastImage from 'react-native-fast-image';
 function UpdatePersonal({navigation}) {
   const [list, setList] = useState([]);
   const [code, setCode] = useState('');
@@ -33,7 +33,7 @@ function UpdatePersonal({navigation}) {
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => {
-          setCode(item.key);
+          setCode(item.id);
           setUpdateModalVisible(true);
         }}
         style={style.parent}>
@@ -48,17 +48,18 @@ function UpdatePersonal({navigation}) {
                 backgroundColor: '#EDF6FF',
               },
             ]}>
-            {/* <Image
+            <FastImage
+              resizeMode={FastImage.resizeMode.cover}
+              priority={FastImage.priority.high}
               style={{borderRadius: 12, width: 130, height: 130}}
-              source={{
-                uri: item.img,
-              }}
-            /> */}
+              source={{uri: item.data.img}}
+            />
+
             <Text style={{fontSize: 16, color: 'black', alignSelf: 'center'}}>
-              {item.title}
+              {item.data.title}
             </Text>
             <Text style={{fontSize: 14, color: 'grey', alignSelf: 'center'}}>
-              {item.SubTitle}
+              {item.data.SubTitle}
             </Text>
             <Text
               style={[
@@ -71,7 +72,7 @@ function UpdatePersonal({navigation}) {
                   color: '#2459a9',
                 },
               ]}>
-              Rs {item.Price}
+              Rs {item.data.Price}
             </Text>
           </View>
         </View>
@@ -88,7 +89,10 @@ function UpdatePersonal({navigation}) {
       .then(querySnapshot => {
         console.log('Total personal services: ', querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
-          newArray.push(documentSnapshot.data());
+          newArray.push({
+            id: documentSnapshot.id,
+            data: documentSnapshot.data(),
+          });
         });
       })
       .then(testing => {

@@ -24,7 +24,7 @@ const UpdateHomeModal = props => {
     setLoading(true);
     firestore()
       .collection('Services')
-      .doc(props.listId)
+      .doc(props.code)
       .update({
         title: title,
         subTitle: SubTitle,
@@ -34,6 +34,9 @@ const UpdateHomeModal = props => {
         console.log('updated');
         setLoading(false);
         props.closeModal();
+      })
+      .catch(() => {
+        setLoading(false);
       });
   };
 
@@ -94,7 +97,7 @@ const UpdateHomeModal = props => {
               {loading ? (
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
-                <Text style={styles.okBtnTxt}>{props.listId}</Text>
+                <Text style={styles.okBtnTxt}>Ok</Text>
               )}
             </Pressable>
           </View>
