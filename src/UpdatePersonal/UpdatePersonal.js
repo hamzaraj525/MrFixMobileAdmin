@@ -59,7 +59,7 @@ function UpdatePersonal({navigation}) {
               {item.data.title}
             </Text>
             <Text style={{fontSize: 14, color: 'grey', alignSelf: 'center'}}>
-              {item.data.SubTitle}
+              {item.data.subTitle}
             </Text>
             <Text
               style={[
@@ -108,16 +108,22 @@ function UpdatePersonal({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <>
-        <Text style={{fontSize: 30, alignSelf: 'center'}}>Update </Text>
-        <FlatList
-          numColumns={2}
-          data={list}
-          horizontal={false}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          renderItem={personalList}
-          keyExtractor={(item, index) => 'key' + index}
-        />
+        <Text style={{fontSize: 30, alignSelf: 'center', fontWeight: '700'}}>
+          Update
+        </Text>
+        {loading ? (
+          <ActivityIndicator size={'large'} color="#3372e2" />
+        ) : (
+          <FlatList
+            numColumns={2}
+            data={list}
+            horizontal={false}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            renderItem={personalList}
+            keyExtractor={(item, index) => 'key' + index}
+          />
+        )}
       </>
 
       <UpdateModal

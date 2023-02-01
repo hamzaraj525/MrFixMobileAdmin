@@ -163,6 +163,7 @@ function Orders({navigation}) {
         console.log(err);
       });
   };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <Text
@@ -171,6 +172,7 @@ function Orders({navigation}) {
           fontWeight: '600',
           fontSize: 32,
           marginTop: '3%',
+          color: 'black',
         }}>
         Orders 😍
       </Text>

@@ -13,6 +13,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import style from './style';
 import database from '@react-native-firebase/database';
 const {width, height} = Dimensions.get('window');
+
 const Home = ({navigation}) => {
   const [list, setList] = useState([]);
   const [fixer, setFixer] = useState([]);

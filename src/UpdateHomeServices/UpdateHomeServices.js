@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, TouchableOpacity, Text} from 'react-native';
+import {
+  View,
+  FlatList,
+  TouchableOpacity,
+  ActivityIndicator,
+  Text,
+} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import style from './style';
 import UpdateHomeModal from './../Components/Modal/UpdateHomeModal';
@@ -100,16 +106,28 @@ function UpdateHomeServices({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <>
-        <Text style={{fontSize: 30, alignSelf: 'center'}}>Update </Text>
-        <FlatList
-          numColumns={2}
-          data={list}
-          horizontal={false}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          renderItem={HomeServicesList}
-          keyExtractor={(item, index) => 'key' + index}
-        />
+        <Text
+          style={{
+            fontSize: 28,
+            color: 'black',
+            alignSelf: 'center',
+            fontWeight: '700',
+          }}>
+          Update
+        </Text>
+        {loading ? (
+          <ActivityIndicator size={'large'} color="#3372e2" />
+        ) : (
+          <FlatList
+            numColumns={2}
+            data={list}
+            horizontal={false}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            renderItem={HomeServicesList}
+            keyExtractor={(item, index) => 'key' + index}
+          />
+        )}
       </>
 
       <UpdateHomeModal
